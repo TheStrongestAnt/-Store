@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dong.store.mapper.DistrictMapper">
+    <!-- 获取全国所有省/某省所有市/某市所有区：List<District> findByParent(String parent) -->
+    <select id="findByParent" resultType="com.dong.store.entity.District">
+        select *
+        from t_dict_district
+        where parent = #{parent}
+        order by code asc
+    </select>
+    <!-- 根据省/市/区的行政代号获取省/市/区的名称：String findNameByCode(String code) -->
+    <select id="findNameByCode" resultType="java.lang.String">
+        select name
+        from t_dict_district
+        where code = #{code}
+    </select>
+
+</mapper>
